@@ -1,0 +1,54 @@
+﻿@model IEnumerable<models.tb_DepotInfo>
+
+@{
+    ViewBag.Title = "Depot";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>仓库清单</h2>
+
+<p>
+    @Html.ActionLink("添加", "Create", null, htmlAttributes: new { @class = "btn btn-primary" })
+</p>
+<table class="table table-striped">
+    <tr>
+        <th style="width: 200px">
+            仓库名称
+        </th>
+        <th style="width: 200px">
+            仓库编号
+        </th>
+        <th style="width: 200px">
+            仓库位置
+        </th>
+        <th style="width: 200px">
+            仓库地区
+        </th>
+        <th style="width: 200px"></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Area)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("删除", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+</table>

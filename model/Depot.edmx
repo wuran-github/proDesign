@@ -1,0 +1,1124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBDepotModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_AssociationDrugOut">
+          <Key>
+            <PropertyRef Name="DepotDrugId" />
+            <PropertyRef Name="DepotOutId" />
+          </Key>
+          <Property Name="DepotDrugId" Type="int" Nullable="false" />
+          <Property Name="DepotOutId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_DamagedDrug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrugId" Type="int" Nullable="false" />
+          <Property Name="DepotDrugId" Type="int" Nullable="false" />
+          <Property Name="DamagedDate" Type="date" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_DepotDrug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepotId" Type="int" Nullable="false" />
+          <Property Name="DrugId" Type="int" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="ProductionDate" Type="date" Nullable="false" />
+          <Property Name="DepotInId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_DepotIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepotId" Type="int" Nullable="false" />
+          <Property Name="DrugId" Type="int" Nullable="false" />
+          <Property Name="SupId" Type="int" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="InDate" Type="date" Nullable="false" />
+          <Property Name="ProductionDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_DepotInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Area" Type="float" />
+        </EntityType>
+        <EntityType Name="tb_DepotOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepotId" Type="int" Nullable="false" />
+          <Property Name="DrugId" Type="int" Nullable="false" />
+          <Property Name="SupId" Type="int" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="OutDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_DrugInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="spec" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Shelf" Type="int" Nullable="false" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Uses" Type="text" />
+        </EntityType>
+        <EntityType Name="tb_Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="Finish" Type="bit" Nullable="false" />
+          <Property Name="CloseDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tb_PurchaseDrugs">
+          <Key>
+            <PropertyRef Name="PId" />
+            <PropertyRef Name="DrugId" />
+            <PropertyRef Name="DepotId" />
+          </Key>
+          <Property Name="PId" Type="int" Nullable="false" />
+          <Property Name="DrugId" Type="int" Nullable="false" />
+          <Property Name="Num" Type="int" Nullable="false" />
+          <Property Name="SupId" Type="int" Nullable="false" />
+          <Property Name="DepotId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_SupplierInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LegalPersons" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ContactName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="CompanyPhone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrganizationCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="18" />
+        </EntityType>
+        <EntityType Name="tb_Warning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepotDrugId" Type="int" Nullable="false" />
+          <Property Name="WarningDays" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBDepot.dbo.drugCheck”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="drugCheck">
+          <Key>
+            <PropertyRef Name="depotId" />
+            <PropertyRef Name="drugId" />
+            <PropertyRef Name="drugName" />
+            <PropertyRef Name="depotName" />
+          </Key>
+          <Property Name="depotId" Type="int" Nullable="false" />
+          <Property Name="drugId" Type="int" Nullable="false" />
+          <Property Name="drugName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="depotName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lateDate" Type="date" />
+          <Property Name="earlyDate" Type="date" />
+          <Property Name="num" Type="int" />
+          <Property Name="batchs" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DBDepot.dbo.StockView”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="StockView">
+          <Key>
+            
+            <PropertyRef Name="drugId" />
+            <PropertyRef Name="depotId" />
+          </Key>
+          <Property Name="Num" Type="int" />
+          <Property Name="depotName" Type="nvarchar" MaxLength="50" />
+          <Property Name="drugName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="inNum" Type="int" />
+          <Property Name="outNum" Type="int" />
+          <Property Name="depotId" Type="int" Nullable="false" />
+          <Property Name="drugId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tb_AssociationDrugOut_tb_DepotDrug">
+          <End Role="tb_DepotDrug" Type="Self.tb_DepotDrug" Multiplicity="1" />
+          <End Role="tb_AssociationDrugOut" Type="Self.tb_AssociationDrugOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotDrug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_AssociationDrugOut">
+              <PropertyRef Name="DepotDrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_AssociationDrugOut_tb_DepotOut">
+          <End Role="tb_DepotOut" Type="Self.tb_DepotOut" Multiplicity="1" />
+          <End Role="tb_AssociationDrugOut" Type="Self.tb_AssociationDrugOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotOut">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_AssociationDrugOut">
+              <PropertyRef Name="DepotOutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DamagedDrug_tb_DepotDrug">
+          <End Role="tb_DepotDrug" Type="Self.tb_DepotDrug" Multiplicity="1" />
+          <End Role="tb_DamagedDrug" Type="Self.tb_DamagedDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotDrug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DamagedDrug">
+              <PropertyRef Name="DepotDrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DamagedDrug_tb_DrugInfo">
+          <End Role="tb_DrugInfo" Type="Self.tb_DrugInfo" Multiplicity="1" />
+          <End Role="tb_DamagedDrug" Type="Self.tb_DamagedDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DamagedDrug">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotDrug_tb_DepotIn">
+          <End Role="tb_DepotIn" Type="Self.tb_DepotIn" Multiplicity="1" />
+          <End Role="tb_DepotDrug" Type="Self.tb_DepotDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotIn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotDrug">
+              <PropertyRef Name="DepotInId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotDrug_tb_DepotInfo">
+          <End Role="tb_DepotInfo" Type="Self.tb_DepotInfo" Multiplicity="1" />
+          <End Role="tb_DepotDrug" Type="Self.tb_DepotDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotDrug">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotDrug_tb_DrugInfo">
+          <End Role="tb_DrugInfo" Type="Self.tb_DrugInfo" Multiplicity="1" />
+          <End Role="tb_DepotDrug" Type="Self.tb_DepotDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotDrug">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotIn_tb_DepotInfo">
+          <End Role="tb_DepotInfo" Type="Self.tb_DepotInfo" Multiplicity="1" />
+          <End Role="tb_DepotIn" Type="Self.tb_DepotIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotIn">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotIn_tb_DrugInfo">
+          <End Role="tb_DrugInfo" Type="Self.tb_DrugInfo" Multiplicity="1" />
+          <End Role="tb_DepotIn" Type="Self.tb_DepotIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotIn">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotIn_tb_SupplierInfo">
+          <End Role="tb_SupplierInfo" Type="Self.tb_SupplierInfo" Multiplicity="1" />
+          <End Role="tb_DepotIn" Type="Self.tb_DepotIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_SupplierInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotIn">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotOut_tb_DepotInfo">
+          <End Role="tb_DepotInfo" Type="Self.tb_DepotInfo" Multiplicity="1" />
+          <End Role="tb_DepotOut" Type="Self.tb_DepotOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotOut">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotOut_tb_DrugInfo">
+          <End Role="tb_DrugInfo" Type="Self.tb_DrugInfo" Multiplicity="1" />
+          <End Role="tb_DepotOut" Type="Self.tb_DepotOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotOut">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotOut_tb_SupplierInfo">
+          <End Role="tb_SupplierInfo" Type="Self.tb_SupplierInfo" Multiplicity="1" />
+          <End Role="tb_DepotOut" Type="Self.tb_DepotOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_SupplierInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotOut">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_PurchaseDrugs_tb_DepotInfo">
+          <End Role="tb_DepotInfo" Type="Self.tb_DepotInfo" Multiplicity="1" />
+          <End Role="tb_PurchaseDrugs" Type="Self.tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_PurchaseDrugs_tb_DrugInfo">
+          <End Role="tb_DrugInfo" Type="Self.tb_DrugInfo" Multiplicity="1" />
+          <End Role="tb_PurchaseDrugs" Type="Self.tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_PurchaseDrugs_tb_Purchase">
+          <End Role="tb_Purchase" Type="Self.tb_Purchase" Multiplicity="1" />
+          <End Role="tb_PurchaseDrugs" Type="Self.tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="PId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_PurchaseDrugs_tb_SupplierInfo">
+          <End Role="tb_SupplierInfo" Type="Self.tb_SupplierInfo" Multiplicity="1" />
+          <End Role="tb_PurchaseDrugs" Type="Self.tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_SupplierInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Warning_tb_DepotDrug">
+          <End Role="tb_DepotDrug" Type="Self.tb_DepotDrug" Multiplicity="1" />
+          <End Role="tb_Warning" Type="Self.tb_Warning" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotDrug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_Warning">
+              <PropertyRef Name="DepotDrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBDepotModelStoreContainer">
+          <EntitySet Name="tb_AssociationDrugOut" EntityType="Self.tb_AssociationDrugOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DamagedDrug" EntityType="Self.tb_DamagedDrug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DepotDrug" EntityType="Self.tb_DepotDrug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DepotIn" EntityType="Self.tb_DepotIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DepotInfo" EntityType="Self.tb_DepotInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DepotOut" EntityType="Self.tb_DepotOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DrugInfo" EntityType="Self.tb_DrugInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Purchase" EntityType="Self.tb_Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_PurchaseDrugs" EntityType="Self.tb_PurchaseDrugs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_SupplierInfo" EntityType="Self.tb_SupplierInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Warning" EntityType="Self.tb_Warning" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="drugCheck" EntityType="Self.drugCheck" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [drugCheck].[depotId] AS [depotId], 
+    [drugCheck].[drugId] AS [drugId], 
+    [drugCheck].[drugName] AS [drugName], 
+    [drugCheck].[depotName] AS [depotName], 
+    [drugCheck].[lateDate] AS [lateDate], 
+    [drugCheck].[earlyDate] AS [earlyDate], 
+    [drugCheck].[num] AS [num], 
+    [drugCheck].[batchs] AS [batchs]
+    FROM [dbo].[drugCheck] AS [drugCheck]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="StockView" EntityType="Self.StockView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [StockView].[Num] AS [Num], 
+    [StockView].[depotName] AS [depotName], 
+    [StockView].[drugName] AS [drugName], 
+    [StockView].[inNum] AS [inNum], 
+    [StockView].[outNum] AS [outNum], 
+    [StockView].[depotId] AS [depotId], 
+    [StockView].[drugId] AS [drugId]
+    FROM [dbo].[StockView] AS [StockView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tb_AssociationDrugOut_tb_DepotDrug" Association="Self.FK_tb_AssociationDrugOut_tb_DepotDrug">
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+            <End Role="tb_AssociationDrugOut" EntitySet="tb_AssociationDrugOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_AssociationDrugOut_tb_DepotOut" Association="Self.FK_tb_AssociationDrugOut_tb_DepotOut">
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+            <End Role="tb_AssociationDrugOut" EntitySet="tb_AssociationDrugOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DamagedDrug_tb_DepotDrug" Association="Self.FK_tb_DamagedDrug_tb_DepotDrug">
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+            <End Role="tb_DamagedDrug" EntitySet="tb_DamagedDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DamagedDrug_tb_DrugInfo" Association="Self.FK_tb_DamagedDrug_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DamagedDrug" EntitySet="tb_DamagedDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotDrug_tb_DepotIn" Association="Self.FK_tb_DepotDrug_tb_DepotIn">
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotDrug_tb_DepotInfo" Association="Self.FK_tb_DepotDrug_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotDrug_tb_DrugInfo" Association="Self.FK_tb_DepotDrug_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotIn_tb_DepotInfo" Association="Self.FK_tb_DepotIn_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotIn_tb_DrugInfo" Association="Self.FK_tb_DepotIn_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotIn_tb_SupplierInfo" Association="Self.FK_tb_DepotIn_tb_SupplierInfo">
+            <End Role="tb_SupplierInfo" EntitySet="tb_SupplierInfo" />
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotOut_tb_DepotInfo" Association="Self.FK_tb_DepotOut_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotOut_tb_DrugInfo" Association="Self.FK_tb_DepotOut_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotOut_tb_SupplierInfo" Association="Self.FK_tb_DepotOut_tb_SupplierInfo">
+            <End Role="tb_SupplierInfo" EntitySet="tb_SupplierInfo" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_DepotInfo" Association="Self.FK_tb_PurchaseDrugs_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_DrugInfo" Association="Self.FK_tb_PurchaseDrugs_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_Purchase" Association="Self.FK_tb_PurchaseDrugs_tb_Purchase">
+            <End Role="tb_Purchase" EntitySet="tb_Purchase" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_SupplierInfo" Association="Self.FK_tb_PurchaseDrugs_tb_SupplierInfo">
+            <End Role="tb_SupplierInfo" EntitySet="tb_SupplierInfo" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Warning_tb_DepotDrug" Association="Self.FK_tb_Warning_tb_DepotDrug">
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+            <End Role="tb_Warning" EntitySet="tb_Warning" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBDepotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBDepotEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="tb_DamagedDrug" EntityType="DBDepotModel.tb_DamagedDrug" />
+          <EntitySet Name="tb_DepotDrug" EntityType="DBDepotModel.tb_DepotDrug" />
+          <EntitySet Name="tb_DepotIn" EntityType="DBDepotModel.tb_DepotIn" />
+          <EntitySet Name="tb_DepotInfo" EntityType="DBDepotModel.tb_DepotInfo" />
+          <EntitySet Name="tb_DepotOut" EntityType="DBDepotModel.tb_DepotOut" />
+          <EntitySet Name="tb_DrugInfo" EntityType="DBDepotModel.tb_DrugInfo" />
+          <EntitySet Name="tb_SupplierInfo" EntityType="DBDepotModel.tb_SupplierInfo" />
+          <EntitySet Name="tb_Warning" EntityType="DBDepotModel.tb_Warning" />
+          <AssociationSet Name="FK_tb_DamagedDrug_tb_DepotDrug" Association="DBDepotModel.FK_tb_DamagedDrug_tb_DepotDrug">
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+            <End Role="tb_DamagedDrug" EntitySet="tb_DamagedDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DamagedDrug_tb_DrugInfo" Association="DBDepotModel.FK_tb_DamagedDrug_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DamagedDrug" EntitySet="tb_DamagedDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotDrug_tb_DepotInfo" Association="DBDepotModel.FK_tb_DepotDrug_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotDrug_tb_DrugInfo" Association="DBDepotModel.FK_tb_DepotDrug_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Warning_tb_DepotDrug" Association="DBDepotModel.FK_tb_Warning_tb_DepotDrug">
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+            <End Role="tb_Warning" EntitySet="tb_Warning" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotIn_tb_DepotInfo" Association="DBDepotModel.FK_tb_DepotIn_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotIn_tb_DrugInfo" Association="DBDepotModel.FK_tb_DepotIn_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotIn_tb_SupplierInfo" Association="DBDepotModel.FK_tb_DepotIn_tb_SupplierInfo">
+            <End Role="tb_SupplierInfo" EntitySet="tb_SupplierInfo" />
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotOut_tb_DepotInfo" Association="DBDepotModel.FK_tb_DepotOut_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotOut_tb_DrugInfo" Association="DBDepotModel.FK_tb_DepotOut_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotOut_tb_SupplierInfo" Association="DBDepotModel.FK_tb_DepotOut_tb_SupplierInfo">
+            <End Role="tb_SupplierInfo" EntitySet="tb_SupplierInfo" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DepotDrug_tb_DepotIn" Association="DBDepotModel.FK_tb_DepotDrug_tb_DepotIn">
+            <End Role="tb_DepotIn" EntitySet="tb_DepotIn" />
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+          </AssociationSet>
+          <AssociationSet Name="tb_AssociationDrugOut" Association="DBDepotModel.tb_AssociationDrugOut">
+            <End Role="tb_DepotDrug" EntitySet="tb_DepotDrug" />
+            <End Role="tb_DepotOut" EntitySet="tb_DepotOut" />
+          </AssociationSet>
+          <EntitySet Name="tb_Purchase" EntityType="DBDepotModel.tb_Purchase" />
+          <EntitySet Name="tb_PurchaseDrugs" EntityType="DBDepotModel.tb_PurchaseDrugs" />
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_DrugInfo" Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_DrugInfo">
+            <End Role="tb_DrugInfo" EntitySet="tb_DrugInfo" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_Purchase" Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_Purchase">
+            <End Role="tb_Purchase" EntitySet="tb_Purchase" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <EntitySet Name="StockViews" EntityType="DBDepotModel.StockView" />
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_DepotInfo" Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_DepotInfo">
+            <End Role="tb_DepotInfo" EntitySet="tb_DepotInfo" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_PurchaseDrugs_tb_SupplierInfo" Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_SupplierInfo">
+            <End Role="tb_SupplierInfo" EntitySet="tb_SupplierInfo" />
+            <End Role="tb_PurchaseDrugs" EntitySet="tb_PurchaseDrugs" />
+          </AssociationSet>
+          <EntitySet Name="drugChecks" EntityType="DBDepotModel.drugCheck" />
+        </EntityContainer>
+        <EntityType Name="tb_DamagedDrug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrugId" Type="Int32" Nullable="false" />
+          <Property Name="DepotDrugId" Type="Int32" Nullable="false" />
+          <Property Name="DamagedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_DepotDrug" Relationship="DBDepotModel.FK_tb_DamagedDrug_tb_DepotDrug" FromRole="tb_DamagedDrug" ToRole="tb_DepotDrug" />
+          <NavigationProperty Name="tb_DrugInfo" Relationship="DBDepotModel.FK_tb_DamagedDrug_tb_DrugInfo" FromRole="tb_DamagedDrug" ToRole="tb_DrugInfo" />
+        </EntityType>
+        <EntityType Name="tb_DepotDrug">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepotId" Type="Int32" Nullable="false" />
+          <Property Name="DrugId" Type="Int32" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="ProductionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tb_DamagedDrug" Relationship="DBDepotModel.FK_tb_DamagedDrug_tb_DepotDrug" FromRole="tb_DepotDrug" ToRole="tb_DamagedDrug" />
+          <NavigationProperty Name="tb_DepotInfo" Relationship="DBDepotModel.FK_tb_DepotDrug_tb_DepotInfo" FromRole="tb_DepotDrug" ToRole="tb_DepotInfo" />
+          <NavigationProperty Name="tb_DrugInfo" Relationship="DBDepotModel.FK_tb_DepotDrug_tb_DrugInfo" FromRole="tb_DepotDrug" ToRole="tb_DrugInfo" />
+          <NavigationProperty Name="tb_Warning" Relationship="DBDepotModel.FK_tb_Warning_tb_DepotDrug" FromRole="tb_DepotDrug" ToRole="tb_Warning" />
+          <Property Name="DepotInId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_DepotIn" Relationship="DBDepotModel.FK_tb_DepotDrug_tb_DepotIn" FromRole="tb_DepotDrug" ToRole="tb_DepotIn" />
+          <NavigationProperty Name="tb_DepotOut" Relationship="DBDepotModel.tb_AssociationDrugOut" FromRole="tb_DepotDrug" ToRole="tb_DepotOut" />
+        </EntityType>
+        <EntityType Name="tb_DepotIn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DepotId" Type="Int32" Nullable="false" />
+          <Property Name="DrugId" Type="Int32" Nullable="false" />
+          <Property Name="SupId" Type="Int32" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProductionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tb_DepotInfo" Relationship="DBDepotModel.FK_tb_DepotIn_tb_DepotInfo" FromRole="tb_DepotIn" ToRole="tb_DepotInfo" />
+          <NavigationProperty Name="tb_DrugInfo" Relationship="DBDepotModel.FK_tb_DepotIn_tb_DrugInfo" FromRole="tb_DepotIn" ToRole="tb_DrugInfo" />
+          <NavigationProperty Name="tb_SupplierInfo" Relationship="DBDepotModel.FK_tb_DepotIn_tb_SupplierInfo" FromRole="tb_DepotIn" ToRole="tb_SupplierInfo" />
+          <NavigationProperty Name="tb_DepotDrug" Relationship="DBDepotModel.FK_tb_DepotDrug_tb_DepotIn" FromRole="tb_DepotIn" ToRole="tb_DepotDrug" />
+        </EntityType>
+        <EntityType Name="tb_DepotInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="Double" />
+          <NavigationProperty Name="tb_DepotDrug" Relationship="DBDepotModel.FK_tb_DepotDrug_tb_DepotInfo" FromRole="tb_DepotInfo" ToRole="tb_DepotDrug" />
+          <NavigationProperty Name="tb_DepotIn" Relationship="DBDepotModel.FK_tb_DepotIn_tb_DepotInfo" FromRole="tb_DepotInfo" ToRole="tb_DepotIn" />
+          <NavigationProperty Name="tb_DepotOut" Relationship="DBDepotModel.FK_tb_DepotOut_tb_DepotInfo" FromRole="tb_DepotInfo" ToRole="tb_DepotOut" />
+          <NavigationProperty Name="tb_PurchaseDrugs" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_DepotInfo" FromRole="tb_DepotInfo" ToRole="tb_PurchaseDrugs" />
+        </EntityType>
+        <EntityType Name="tb_DepotOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepotId" Type="Int32" Nullable="false" />
+          <Property Name="DrugId" Type="Int32" Nullable="false" />
+          <Property Name="SupId" Type="Int32" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tb_DepotInfo" Relationship="DBDepotModel.FK_tb_DepotOut_tb_DepotInfo" FromRole="tb_DepotOut" ToRole="tb_DepotInfo" />
+          <NavigationProperty Name="tb_DrugInfo" Relationship="DBDepotModel.FK_tb_DepotOut_tb_DrugInfo" FromRole="tb_DepotOut" ToRole="tb_DrugInfo" />
+          <NavigationProperty Name="tb_SupplierInfo" Relationship="DBDepotModel.FK_tb_DepotOut_tb_SupplierInfo" FromRole="tb_DepotOut" ToRole="tb_SupplierInfo" />
+          <NavigationProperty Name="tb_DepotDrug" Relationship="DBDepotModel.tb_AssociationDrugOut" FromRole="tb_DepotOut" ToRole="tb_DepotDrug" />
+        </EntityType>
+        <EntityType Name="tb_DrugInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="spec" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Shelf" Type="Int32" Nullable="false" />
+          <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Uses" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_DamagedDrug" Relationship="DBDepotModel.FK_tb_DamagedDrug_tb_DrugInfo" FromRole="tb_DrugInfo" ToRole="tb_DamagedDrug" />
+          <NavigationProperty Name="tb_DepotDrug" Relationship="DBDepotModel.FK_tb_DepotDrug_tb_DrugInfo" FromRole="tb_DrugInfo" ToRole="tb_DepotDrug" />
+          <NavigationProperty Name="tb_DepotIn" Relationship="DBDepotModel.FK_tb_DepotIn_tb_DrugInfo" FromRole="tb_DrugInfo" ToRole="tb_DepotIn" />
+          <NavigationProperty Name="tb_DepotOut" Relationship="DBDepotModel.FK_tb_DepotOut_tb_DrugInfo" FromRole="tb_DrugInfo" ToRole="tb_DepotOut" />
+          <NavigationProperty Name="tb_PurchaseDrugs" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_DrugInfo" FromRole="tb_DrugInfo" ToRole="tb_PurchaseDrugs" />
+        </EntityType>
+        <EntityType Name="tb_SupplierInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LegalPersons" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPhone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_DepotIn" Relationship="DBDepotModel.FK_tb_DepotIn_tb_SupplierInfo" FromRole="tb_SupplierInfo" ToRole="tb_DepotIn" />
+          <NavigationProperty Name="tb_DepotOut" Relationship="DBDepotModel.FK_tb_DepotOut_tb_SupplierInfo" FromRole="tb_SupplierInfo" ToRole="tb_DepotOut" />
+          <NavigationProperty Name="tb_PurchaseDrugs" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_SupplierInfo" FromRole="tb_SupplierInfo" ToRole="tb_PurchaseDrugs" />
+        </EntityType>
+        <EntityType Name="tb_Warning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepotDrugId" Type="Int32" Nullable="false" />
+          <Property Name="WarningDays" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tb_DepotDrug" Relationship="DBDepotModel.FK_tb_Warning_tb_DepotDrug" FromRole="tb_Warning" ToRole="tb_DepotDrug" />
+        </EntityType>
+        <Association Name="FK_tb_DamagedDrug_tb_DepotDrug">
+          <End Type="DBDepotModel.tb_DepotDrug" Role="tb_DepotDrug" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DamagedDrug" Role="tb_DamagedDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotDrug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DamagedDrug">
+              <PropertyRef Name="DepotDrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DamagedDrug_tb_DrugInfo">
+          <End Type="DBDepotModel.tb_DrugInfo" Role="tb_DrugInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DamagedDrug" Role="tb_DamagedDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DamagedDrug">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotDrug_tb_DepotInfo">
+          <End Type="DBDepotModel.tb_DepotInfo" Role="tb_DepotInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotDrug" Role="tb_DepotDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotDrug">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotDrug_tb_DrugInfo">
+          <End Type="DBDepotModel.tb_DrugInfo" Role="tb_DrugInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotDrug" Role="tb_DepotDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotDrug">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Warning_tb_DepotDrug">
+          <End Type="DBDepotModel.tb_DepotDrug" Role="tb_DepotDrug" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_Warning" Role="tb_Warning" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotDrug">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_Warning">
+              <PropertyRef Name="DepotDrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotIn_tb_DepotInfo">
+          <End Type="DBDepotModel.tb_DepotInfo" Role="tb_DepotInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotIn" Role="tb_DepotIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotIn">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotIn_tb_DrugInfo">
+          <End Type="DBDepotModel.tb_DrugInfo" Role="tb_DrugInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotIn" Role="tb_DepotIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotIn">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotIn_tb_SupplierInfo">
+          <End Type="DBDepotModel.tb_SupplierInfo" Role="tb_SupplierInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotIn" Role="tb_DepotIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_SupplierInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotIn">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotOut_tb_DepotInfo">
+          <End Type="DBDepotModel.tb_DepotInfo" Role="tb_DepotInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotOut" Role="tb_DepotOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotOut">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotOut_tb_DrugInfo">
+          <End Type="DBDepotModel.tb_DrugInfo" Role="tb_DrugInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotOut" Role="tb_DepotOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotOut">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotOut_tb_SupplierInfo">
+          <End Type="DBDepotModel.tb_SupplierInfo" Role="tb_SupplierInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotOut" Role="tb_DepotOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_SupplierInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotOut">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DepotDrug_tb_DepotIn">
+          <End Type="DBDepotModel.tb_DepotIn" Role="tb_DepotIn" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_DepotDrug" Role="tb_DepotDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotIn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_DepotDrug">
+              <PropertyRef Name="DepotInId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_AssociationDrugOut">
+          <End Type="DBDepotModel.tb_DepotDrug" Role="tb_DepotDrug" Multiplicity="*" />
+          <End Type="DBDepotModel.tb_DepotOut" Role="tb_DepotOut" Multiplicity="*" />
+        </Association>
+        <EntityType Name="tb_Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Finish" Type="Boolean" Nullable="false" />
+          <Property Name="CloseDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tb_PurchaseDrugs" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_Purchase" FromRole="tb_Purchase" ToRole="tb_PurchaseDrugs" />
+        </EntityType>
+        <EntityType Name="tb_PurchaseDrugs">
+          <Key>
+            <PropertyRef Name="PId" />
+            <PropertyRef Name="DrugId" />
+            <PropertyRef Name="DepotId" />
+          </Key>
+          <Property Name="PId" Type="Int32" Nullable="false" />
+          <Property Name="DrugId" Type="Int32" Nullable="false" />
+          <Property Name="Num" Type="Int32" Nullable="false" />
+          <Property Name="SupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_DrugInfo" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_DrugInfo" FromRole="tb_PurchaseDrugs" ToRole="tb_DrugInfo" />
+          <NavigationProperty Name="tb_Purchase" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_Purchase" FromRole="tb_PurchaseDrugs" ToRole="tb_Purchase" />
+          <Property Name="DepotId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_DepotInfo" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_DepotInfo" FromRole="tb_PurchaseDrugs" ToRole="tb_DepotInfo" />
+          <NavigationProperty Name="tb_SupplierInfo" Relationship="DBDepotModel.FK_tb_PurchaseDrugs_tb_SupplierInfo" FromRole="tb_PurchaseDrugs" ToRole="tb_SupplierInfo" />
+        </EntityType>
+        <Association Name="FK_tb_PurchaseDrugs_tb_DrugInfo">
+          <End Type="DBDepotModel.tb_DrugInfo" Role="tb_DrugInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_PurchaseDrugs" Role="tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DrugInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="DrugId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_PurchaseDrugs_tb_Purchase">
+          <End Type="DBDepotModel.tb_Purchase" Role="tb_Purchase" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_PurchaseDrugs" Role="tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="PId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StockView">
+          <Key>
+            <PropertyRef Name="drugId" />
+            <PropertyRef Name="depotId" />
+          </Key>
+          <Property Name="Num" Type="Int32" />
+          <Property Name="depotName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="drugName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="inNum" Type="Int32" />
+          <Property Name="outNum" Type="Int32" />
+          <Property Name="depotId" Type="Int32" Nullable="false" />
+          <Property Name="drugId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tb_PurchaseDrugs_tb_DepotInfo">
+          <End Type="DBDepotModel.tb_DepotInfo" Role="tb_DepotInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_PurchaseDrugs" Role="tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DepotInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="DepotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_PurchaseDrugs_tb_SupplierInfo">
+          <End Type="DBDepotModel.tb_SupplierInfo" Role="tb_SupplierInfo" Multiplicity="1" />
+          <End Type="DBDepotModel.tb_PurchaseDrugs" Role="tb_PurchaseDrugs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_SupplierInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_PurchaseDrugs">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="drugCheck">
+          <Key>
+            <PropertyRef Name="depotId" />
+            <PropertyRef Name="drugId" />
+            <PropertyRef Name="drugName" />
+            <PropertyRef Name="depotName" />
+          </Key>
+          <Property Name="depotId" Type="Int32" Nullable="false" />
+          <Property Name="drugId" Type="Int32" Nullable="false" />
+          <Property Name="drugName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="depotName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lateDate" Type="DateTime" Precision="0" />
+          <Property Name="earlyDate" Type="DateTime" Precision="0" />
+          <Property Name="num" Type="Int32" />
+          <Property Name="batchs" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBDepotModelStoreContainer" CdmEntityContainer="DBDepotEntities" >
+          <EntitySetMapping Name="tb_DamagedDrug">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_DamagedDrug">
+              <MappingFragment StoreEntitySet="tb_DamagedDrug">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="DamagedDate" ColumnName="DamagedDate" />
+                <ScalarProperty Name="DepotDrugId" ColumnName="DepotDrugId" />
+                <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DepotDrug">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_DepotDrug">
+              <MappingFragment StoreEntitySet="tb_DepotDrug">
+                <ScalarProperty Name="DepotInId" ColumnName="DepotInId" />
+                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+                <ScalarProperty Name="DepotId" ColumnName="DepotId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DepotIn">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_DepotIn">
+              <MappingFragment StoreEntitySet="tb_DepotIn">
+                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="SupId" ColumnName="SupId" />
+                <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+                <ScalarProperty Name="DepotId" ColumnName="DepotId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DepotInfo">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_DepotInfo">
+              <MappingFragment StoreEntitySet="tb_DepotInfo">
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DepotOut">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_DepotOut">
+              <MappingFragment StoreEntitySet="tb_DepotOut">
+                <ScalarProperty Name="OutDate" ColumnName="OutDate" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="SupId" ColumnName="SupId" />
+                <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+                <ScalarProperty Name="DepotId" ColumnName="DepotId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DrugInfo">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_DrugInfo">
+              <MappingFragment StoreEntitySet="tb_DrugInfo">
+                <ScalarProperty Name="Uses" ColumnName="Uses" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="Shelf" ColumnName="Shelf" />
+                <ScalarProperty Name="spec" ColumnName="spec" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_SupplierInfo">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_SupplierInfo">
+              <MappingFragment StoreEntitySet="tb_SupplierInfo">
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="OrganizationCode" ColumnName="OrganizationCode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LegalPersons" ColumnName="LegalPersons" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Warning">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_Warning">
+              <MappingFragment StoreEntitySet="tb_Warning">
+                <ScalarProperty Name="WarningDays" ColumnName="WarningDays" />
+                <ScalarProperty Name="DepotDrugId" ColumnName="DepotDrugId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tb_AssociationDrugOut" TypeName="DBDepotModel.tb_AssociationDrugOut" StoreEntitySet="tb_AssociationDrugOut">
+            <EndProperty Name="tb_DepotOut">
+              <ScalarProperty Name="Id" ColumnName="DepotOutId" />
+            </EndProperty>
+            <EndProperty Name="tb_DepotDrug">
+              <ScalarProperty Name="Id" ColumnName="DepotDrugId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="tb_Purchase">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_Purchase">
+              <MappingFragment StoreEntitySet="tb_Purchase">
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_PurchaseDrugs">
+            <EntityTypeMapping TypeName="DBDepotModel.tb_PurchaseDrugs">
+              <MappingFragment StoreEntitySet="tb_PurchaseDrugs">
+                <ScalarProperty Name="DepotId" ColumnName="DepotId" />
+                <ScalarProperty Name="SupId" ColumnName="SupId" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+                <ScalarProperty Name="PId" ColumnName="PId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockViews">
+            <EntityTypeMapping TypeName="DBDepotModel.StockView">
+              <MappingFragment StoreEntitySet="StockView">
+                <ScalarProperty Name="drugId" ColumnName="drugId" />
+                <ScalarProperty Name="depotId" ColumnName="depotId" />
+                <ScalarProperty Name="outNum" ColumnName="outNum" />
+                <ScalarProperty Name="inNum" ColumnName="inNum" />
+                <ScalarProperty Name="drugName" ColumnName="drugName" />
+                <ScalarProperty Name="depotName" ColumnName="depotName" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="drugChecks">
+            <EntityTypeMapping TypeName="DBDepotModel.drugCheck">
+              <MappingFragment StoreEntitySet="drugCheck">
+                <ScalarProperty Name="batchs" ColumnName="batchs" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="earlyDate" ColumnName="earlyDate" />
+                <ScalarProperty Name="lateDate" ColumnName="lateDate" />
+                <ScalarProperty Name="depotName" ColumnName="depotName" />
+                <ScalarProperty Name="drugName" ColumnName="drugName" />
+                <ScalarProperty Name="drugId" ColumnName="drugId" />
+                <ScalarProperty Name="depotId" ColumnName="depotId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

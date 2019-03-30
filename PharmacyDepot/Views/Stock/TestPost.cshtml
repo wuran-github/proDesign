@@ -1,0 +1,16 @@
+﻿@model  List<models.tb_DepotDrug>
+
+@{
+    ViewBag.Title = "TestPost";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>TestPost</h2>
+@using(Html.BeginForm()){
+@Html.AntiForgeryToken()
+ <input type="text" name="depots[0].Id" value="1" />
+<input type="text" name="depots[1].Id" value="2" />
+<input type="text" name="depots[2].Id" value="3" />
+<button type="submit" value="Test">Test</button>
+}
+

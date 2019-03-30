@@ -1,0 +1,58 @@
+﻿@model IEnumerable<models.tb_SupplierInfo>
+
+@{
+    ViewBag.Title = "SupplierInfo";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>供销商清单</h2>
+
+<p>
+    @Html.ActionLink("添加", "Create",null,htmlAttributes: new {@class="btn btn-primary"})
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            供销商名称
+        </th>
+        <th>
+            联系人姓名
+        </th>
+        <th>
+            联系人电话
+        </th>
+        <th>
+            公司电话
+        </th>
+       
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyPhone)
+                </td>
+               
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("详细信息", "details", new { id = item.Id })|
+                    @Html.ActionLink("删除", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+
+</table>

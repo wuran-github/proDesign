@@ -1,0 +1,101 @@
+﻿@model IEnumerable<models.tb_DamagedDrug>
+
+@{
+    ViewBag.Title = "Damaged";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<script>
+    function jump() {
+        var p = document.getElementById("pageIndex");
+        if(p.value==""){
+            alert("请输入跳转页码");
+        } else {
+            if (p.value > "@ViewData["count"]" || p.value<1) {
+                alert("请输入正确的跳转页码(1~@ViewData["count"])");
+            } else {
+                var href = "@Url.Action("Damaged", "Damaged", new { str = "jump" })" + "&pageIndex="+p.value;
+                location.href = href;
+            }
+        }
+    }
+    function next() {
+        var href = "@Url.Action("page", "Damaged", new { str = "next" })" + "&pageIndex=@ViewData["pageIndex"]";
+        location.href = href;
+    }
+    function privous() {
+        var href = "@Url.Action("page", "Damaged", new { str = "privous" })" + "&pageIndex=@ViewData["pageIndex"]";
+        location.href = href;
+    }
+</script>
+    <h1 class="text-center">药品报损清单</h1>
+    <p>
+        @Html.ActionLink("添加", "Create", null, htmlAttributes: new { @class = "btn btn-primary  btn-lg active btn-lg" })
+    </p>
+    <table class="table table-striped">
+    <tr>
+        <th>
+            药品编号
+        </th>
+        <th>
+            药品名称
+        </th>
+        <th>
+            药品库存编号
+        </th>
+        <th>
+            损坏日期
+        </th>
+        <th>
+            损坏数量
+        </th>
+        <th>
+            损坏原因
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            var ddate = item.DamagedDate.ToShortDateString();
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DrugId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tb_DrugInfo.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepotDrugId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => ddate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Num)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reason)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("删除", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+
+        }
+    }
+
+</table>
+
+
+
+<div class="text-center">
+    <input type="button" id="privous" class="btn btn-default" onclick="privous()" value="上一页" @ViewData["privousEnabled"] />
+    第 @Html.Raw(ViewData["pageIndex"]) 页 | 共 @Html.Raw(ViewData["count"]) 页
+    <input type="button" id="next" class="btn btn-default" onclick="next()" value="下一页" @ViewData["nextEnabled"] />
+    <input type="text" id="pageIndex" name="pageIndex"  />
+    <input type="button" class="btn btn-default" id="jump" onclick="jump()" value="转到" />
+
+</div>

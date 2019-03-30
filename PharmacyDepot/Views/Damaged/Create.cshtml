@@ -1,0 +1,67 @@
+﻿@model models.tb_DamagedDrug
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h1>药品报损信息添加</h1><br/><br/>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">
+            药品编号：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DrugId)
+            @Html.ValidationMessageFor(model => model.DrugId)
+        </div>
+
+        <div class="editor-label">
+            药品存放信息编号：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepotDrugId)
+            @Html.ValidationMessageFor(model => model.DepotDrugId)
+        </div>
+
+        <div class="editor-label">
+            损坏日期：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DamagedDate)
+            @Html.ValidationMessageFor(model => model.DamagedDate)
+        </div>
+
+        <div class="editor-label">
+            损坏数量：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Num)
+            @Html.ValidationMessageFor(model => model.Num)
+        </div>
+
+        <div class="editor-label">
+            损坏原因：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Reason)
+            @Html.ValidationMessageFor(model => model.Reason)
+        </div>
+
+        <p>
+            <input type="submit" value="添加" class="btn btn-default" />
+        </p>
+        <div>
+            @Html.ActionLink("返回清单", "Damaged")
+        </div>
+    </fieldset>
+}
+
+        
+
+
+    

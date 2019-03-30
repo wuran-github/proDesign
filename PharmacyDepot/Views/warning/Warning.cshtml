@@ -1,0 +1,75 @@
+﻿@model IEnumerable<models.tb_Warning>
+
+@{
+    ViewBag.Title = "Warning";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<script>
+    function jump() {
+        var p = document.getElementById("pageIndex");
+        if(p.value==""){
+            alert("请输入跳转页码");
+        } else {
+            if (p.value > "@ViewData["count"]" || p.value<1) {
+                alert("请输入正确的跳转页码(1~@ViewData["count"])");
+            } else {
+                var href = "@Url.Action("page", "Warning", new { str = "jump" })" + "&pageIndex="+p.value;
+                location.href = href;
+            }
+        }
+    }
+    function next() {
+        var href = "@Url.Action("page", "Warning", new { str = "next" })" + "&pageIndex=@ViewData["pageIndex"]";
+        location.href = href;
+    }
+    function privous() {
+        var href = "@Url.Action("page", "Warning", new { str = "privous" })" + "&pageIndex=@ViewData["pageIndex"]";
+        location.href = href;
+    }
+</script>
+<h1 class="text-center">过期预警药品信息</h1><br/>
+<table class="table table-striped">
+    <tr>
+        <th>
+            药品库存编号
+        </th>
+        <th>
+            药品名称
+        </th>
+        <th>
+            数量
+        </th>
+        <th>
+            过期时间
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var d = item.tb_DepotDrug.ProductionDate;
+        var a = item.tb_DepotDrug.tb_DrugInfo.Shelf;
+        var ddate = d.AddDays(a).ToShortDateString();
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepotDrugId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_DepotDrug.tb_DrugInfo.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_DepotDrug.Num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => ddate)
+            </td>
+        </tr>
+    }
+</table>
+<div class="text-center">
+    <input type="button" id="privous" onclick="privous()" value="上一页" @ViewData["privousEnabled"] />
+    第 @Html.Raw(ViewData["pageIndex"]) 页 | 共 @Html.Raw(ViewData["count"]) 页
+    <input type="button" id="next" onclick="next()" value="下一页" @ViewData["nextEnabled"] />
+    <input type="text" id="pageIndex" name="pageIndex" />
+    <input type="button" id="jump" onclick="jump()" value="转到" />
+</div>

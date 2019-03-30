@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "InstockModify";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>入库记录修改</h2>
+<div id="InstockModify">
+    <table id="InstockModify_tb" class="table table-striped">
+        <thead>
+            <tr>
+                <th width="10%">批号</th>
+                <th width="10%">仓库编号</th>
+                <th width="10%">药品编号</th>
+                <th width="10%">供应商编号</th>
+                <th width="15%">数量</th>
+                <th width="15%">入库日期</th>
+                <th width="15%">生产日期</th>
+                <th width="10%">操作</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="InstockModify_page">
+    当前页：<label id="lab_nowpage_instockModify">0</label>
+    <input id="text_gopage_instockModify" type="number" placeholder="0" />
+    <input id="but_gopage_instockModify" type="button" class="btn" value="转到" />
+    <label id="lab_firstpage_instockModify" style="text-decoration:underline">首页</label>
+    <input id="but_prepage_instockModify" type="button" value="上一页" />
+    <input id="but_nextpage_instockModify" type="button" value="下一页" />
+    <label id="lab_lastpage_instockModify" style="text-decoration:underline">尾页</label>
+</div>
+<script>
+    $(document).ready(function () {
+        //解绑
+        $("tbody").off("click", "input[name='InstockModify_modify']");
+        //为动态添加的“修改”按钮添加函数
+        $("tbody").on("click", "input[name='InstockModify_modify']", function () {
+            var depotids = @Html.Raw(Json.Encode(@ViewBag.DepotId));
+            var drugids = @Html.Raw(Json.Encode(@ViewBag.DrugId));
+            var supids = @Html.Raw(Json.Encode(@ViewBag.SupId));
+            var depotidops = "";;
+            var drugidops = "";
+            var supidops = "";
+            for (var i = 0; i < depotids.length; i++) {
+                depotidops += ("<option>" + depotids[i] + "</option>");
+            }
+            for (var i = 0; i < drugids.length; i++) {
+                drugidops += ("<option>" + drugids[i] + "</option>");
+            }
+            for (var i = 0; i < supids.length; i++) {
+                supidops += ("<option>" + supids[i] + "</option>");
+            }
+            var tr = $(this).parent().parent();
+            //values[]存取激活的一个tr里每个td的内容值
+            var values = {};
+            values[0] = tr.children().eq(0).text();
+            values[1] = tr.children().eq(1).text();
+            values[2] = tr.children().eq(2).text();
+            values[3] = tr.children().eq(3).text();
+            values[4] = tr.children().eq(4).text();
+            values[5] = tr.children().eq(5).text();
+            values[6] = tr.children().eq(6).text();
+            //编号和批号不可修改
+            var depotId = "<select name='depotid'>" + depotidops + "</select>";
+            var drugId = "<select name='drugid'>" + drugidops + "</select>";
+            var supId = "<select name='drugid'>" + supidops + "</select>";
+            var num = "<input type='text' value=" + values[4] + " />";
+            var inDate = "<input type='text' value=" + values[5] + " />";
+            var proDate = "<input type='text' value=" + values[6] + " />";
+            var buts = "<input type='button' name='InstockModify_conModify' value='确定' />&nbsp;&nbsp;";
+            buts += "<input type='button' name='InstockModify_canModify' value='取消' />";
+            tr.children().eq(1).html(depotId);
+            tr.children().eq(2).html(drugId);
+            tr.children().eq(3).html(supId);
+            tr.children().eq(4).html(num);
+            tr.children().eq(5).html(inDate);
+            tr.children().eq(6).html(proDate);
+            tr.children().eq(7).html(buts);
+            //
+            $(tr).off("click", "input[name='InstockModify_canModify']");
+            //“取消（修改）”按钮
+            $(tr).on("click", "input[name='InstockModify_canModify']", function () {
+                tr.children().eq(1).html(values[1]);
+                tr.children().eq(2).html(values[2]);
+                tr.children().eq(3).html(values[3]);
+                tr.children().eq(4).html(values[4]);
+                tr.children().eq(5).html(values[5]);
+                tr.children().eq(6).html(values[6]);
+                tr.children().eq(7).html("<input name='InstockModify_modify' type='button' value='修改' />");
+            });
+            //
+            $(tr).off("click", "input[name='InstockModify_conModify']");
+            //“确认（修改）”按钮
+            $(tr).on("click", "input[name='InstockModify_conModify']", function () {
+                var id = tr.find("td").eq(0).text();
+                var depotId = tr.children().eq(1).find("select").val();
+                var drugId = tr.children().eq(2).find("select").val();
+                var supId = tr.children().eq(3).find("select").val();
+                var num = tr.children().eq(4).find("input").val();
+                var inDate = tr.children().eq(5).find("input").val();
+                var proDate = tr.children().eq(6).find("input").val();
+                var data = {
+                    id: id,
+                    depotId: depotId,
+                    drugId: drugId,
+                    supId:supId,
+                    num: num,
+                    inDate:inDate,
+                    proDate: proDate
+                };
+                $.ajax({
+                    url: '../../api/depotdrug/modifyinstock',
+                    type: 'post',
+                    data: JSON.stringify(data),
+                    datatype: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        var flag = parseInt(data.f);
+                        if (flag == 0) {
+                            alert("修改失败!");
+                            //tr.children().eq(0).html(values[0]);
+                            tr.children().eq(1).html(values[1]);
+                            tr.children().eq(2).html(values[2]);
+                            tr.children().eq(3).html(values[3]);
+                            tr.children().eq(4).html(values[4]);
+                            tr.children().eq(5).html(values[5]);
+                            tr.children().eq(6).html(values[6]);
+                            tr.children().eq(7).html("<input name='InstockModify_modify' type='button' value='修改' />");
+                        }
+                        if (flag == 1) {
+                            alert("修改成功!");
+                            //将数据写回表格
+                            //tr.children().eq(0).html(data.items.id);
+                            tr.children().eq(1).html(data.items.depotId);
+                            tr.children().eq(2).html(data.items.drugId);
+                            tr.children().eq(3).html(data.items.supId);
+                            tr.children().eq(4).html(data.items.num);
+                            tr.children().eq(5).html(data.items.inDate);
+                            tr.children().eq(6).html(data.items.proDate);
+                            tr.children().eq(7).html("<input name='InstockModify_modify' type='button' value='修改' />");
+                        }
+                    },
+                })
+            });
+        });
+    })
+</script>
+<script src="../../Scripts/Controllers/InstockController.js"></script>
+
+

@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    @using StackExchange.Profiling;
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../Css/Style.css" />
+    <link rel="stylesheet" href="../../Css/layoutit.css" />
+    <link rel="stylesheet" href="../../bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.min.css" />
+    <script src="../../Scripts/jquery-1.11.1.min.js"></script>
+    <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../../bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../bootstrap-3.3.7-dist/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+</head>
+<body>
+ 
+        
+       
+    
+    <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="bs-docs-header">
+                <h2><strong>药店</strong>库房管理系统</h2>
+            </div>
+        </nav>
+    </div>
+  
+    <div class="sidebar-nav" style="top:103px;">
+        @{
+            var warnnum = PharmacyDepot.ToolClass.TimerWarn.warn();
+            <div>
+                <a href="../../warning/warning" class="btn btn-warning">即将过期药品<span class="badge">【@warnnum】</span></a>
+            </div>
+        }
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
+                            信息管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a data-parent="#pc" data-toggle="collapse" href="#testc" class="btn btn-info">仓库信息</a>
+                        <div id="testc" class="panel-collapse collapse">
+                            <a href="../../depot/depot">仓库信息清单</a><br />
+                            <a href="../../depot/create">仓库信息添加</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a data-parent="#pc" data-toggle="collapse" href="#testg" class="btn btn-info">供销商信息</a>
+                        <div id="testg" class="panel-collapse collapse">
+                            <a href="../../supplierinfo/supplierinfo">供销商清单</a><br />
+                            <a href="../../supplierinfo/create">供销商添加</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" id="outinstock">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo">
+                            出入库管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a data-parent="#outinstock" data-toggle="collapse" href="#instock" class="btn btn-info">入库管理</a>
+                        <div id="instock" class="panel-collapse collapse">
+                            <a href="../../instock/instock">药品入库</a><br />
+                            <a href="../../instock/instockmodify">入库记录信息修改</a><br />
+                            <a href="../../instock/depotdrugmodify">仓库药品信息修改</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a data-parent="#outinstock" data-toggle="collapse" href="#outstock" class="btn btn-info">出库管理</a>
+                        <div id="outstock" class="panel-collapse collapse">
+                            <a href="../../outstock/outstock">药品出库</a><br />
+                            <a href="../../outstock/outstockmodify">出库记录信息修改</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a data-parent="#outinstock" data-toggle="collapse" href="#transfer" class="btn btn-info">调拨管理</a>
+                        <div id="transfer" class="panel-collapse collapse">
+                            <a href="../../transfer/transfer">调拨管理</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" id="pc">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseThree">
+                            盘存管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a data-parent="#pc" data-toggle="collapse" href="#testX" class="btn btn-info">盘存</a>
+                        <div id="testX" class="panel-collapse collapse">
+                            <a href="../../stock/stockindex">盘存统计</a><br />
+                            <a href="../../stock/stockoutindex">出库统计</a><br />
+                            <a href="../../stock/bulidpurchaseplan">生成采购计划</a><br />
+                            <a href="../../stock/purchaseplan">采购计划</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a data-parent="#pc" data-toggle="collapse" href="#testd" class="btn btn-info">报损</a>
+                        <div id="testd" class="panel-collapse collapse">
+                            <a href="../../damaged/damaged">报损信息管理</a><br/>
+                            <a href="../../damaged/create">报损信息添加</a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <a data-parent="#pc" data-toggle="collapse" href="#testm" class="btn btn-info">过期预警</a>
+                        <div id="testm" class="panel-collapse collapse">
+                            <a href="../../warning/warning">预警信息管理</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" id="drugcheck">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseFour">
+                            药品查询
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <a data-parent="#drugcheck" data-toggle="collapse" href="#drugquery" class="btn btn-info">药品查询</a>
+                        <div id="drugquery" class="panel-collapse collapse">
+                        <a href="../../drugcheck/index">药品查询</a>
+                    </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:60px">
+        <div class="container">
+            <div class="col-md-6">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+    @*@MiniProfiler.RenderIncludes()*@
+  
+</body>
+</html>

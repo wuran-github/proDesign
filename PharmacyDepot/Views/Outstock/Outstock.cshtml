@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Outstock";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<h2>药品出库</h2>
+<div id="Outstock">
+    <table id="Outstock_tb" class="table table-striped">
+        <thead>
+            <tr>
+                <th width="30%">仓库药品编号</th>
+                <th width="15%">数量</th>
+                <th width="15%">出库日期</th>
+                <th width="10%"><input class="btn btn-default" type="button" value="出库" onclick="addrows()" /></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="Outstock_buttons" class="text-center">
+    <input id="Outstock_submit" class="btn btn-primary btn-lg active" value="确定出库" />
+</div>
+<script>
+    ///前端验证
+    /***********************非空验证**************************/
+
+    //动态添加table行
+    function addrows() {
+        
+        var tr = "<tr>";
+        tr += "<td><input name='depotdrugid' type='text' /></td>";
+        tr += "<td><input name='num' class='form-control' type='text' placeholder='0' /></td>";
+        tr += "<td><input name='outdate' class='form-control' type='text' placeholder='2001/01/01' /></td>";
+        tr += "<td><input class='btn btn-default' type='button' value='删除' onclick='delrow(this)' /></td>";
+        tr += "</tr>";
+        $("#Outstock_tb tbody").append(tr);
+    }
+
+    //删除table列
+    function delrow(e) {
+        $(e).parent().parent().remove();
+    }
+</script>
+<script src="~/Scripts/Controllers/OutstockController.js"></script>

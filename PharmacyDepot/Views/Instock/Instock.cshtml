@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Instock";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<h2>药品入库</h2>
+<div id="Instock">
+    <table id="Instock_tb" class="table table-striped">
+        <thead>
+            <tr>
+                <th>仓库编号</th>
+                <th>药品编号</th>
+                <th>供应商编号</th>
+                <th>数量</th>
+                <th>入库日期</th>
+                <th>生产日期</th>
+                <th><input class="btn btn-default" type="button" value="添加" onclick="addrows()" /></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="Instock_buttons" class="text-center">
+    <input id="instock_submit" class="btn btn-info" value="确定添加" />
+</div>
+
+
+<script src="../../Scripts/Controllers/InstockController.js"></script>
+<script>
+    ///前端验证
+    /***********************非空验证**************************/
+    
+    //动态添加table行
+    function addrows() {
+        //两种方式获取ViewBag数组，但是有疑问
+        var depotids = @Html.Raw(Json.Encode(@ViewBag.DepotId));
+        var drugids = @Html.Raw(Json.Encode(@ViewBag.DrugId));
+        var supids = @Html.Raw(Json.Encode(@ViewBag.SupId));
+        var depotidops = "";;
+        var drugidops = "";
+        var supidops = "";
+        for (var i = 0; i < depotids.length; i++) {
+            depotidops += ("<option>" + depotids[i] + "</option>");
+        }
+        for (var i = 0; i < drugids.length; i++) {
+            drugidops += ("<option>" + drugids[i] + "</option>");
+        }
+        for (var i = 0; i < supids.length; i++) {
+            supidops += ("<option>" + supids[i] + "</option>");
+        }
+        var tr = "<tr><td><select name='depotid'>" + depotidops + "</select></td>";
+        tr += ("<td><select name='drugid'>" + drugidops + "</select></td>");
+        tr += ("<td><select name='supid'>" + supidops + "</select></td>");
+        tr += "<td><input name='num' class='form-control' type='text' placeholder='0' />";
+        tr += "</td><td><input name='indate' class='form-control' type='text' placeholder='2001/01/01' /></td><td><input name='prodate' class='form-control' type='text' placeholder='2001/01/01' />";
+        tr += "</td><td><input class='btn btn-default' type='button' value='删除' onclick='delrow(this)' /></td></tr>";
+        $("#Instock_tb tbody").append(tr);
+    }
+    
+    //删除table列
+    function delrow(e) {
+        $(e).parent().parent().remove();
+    }
+</script>

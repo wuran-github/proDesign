@@ -1,0 +1,108 @@
+﻿@model models.tb_SupplierInfo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tb_SupplierInfo</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            供销商名称
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            法人
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegalPersons)
+            @Html.ValidationMessageFor(model => model.LegalPersons)
+        </div>
+
+        <div class="editor-label">
+            地址
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            联系人姓名
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactName)
+            @Html.ValidationMessageFor(model => model.ContactName)
+        </div>
+
+        <div class="editor-label">
+            联系人电话
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactPhone)
+            @Html.ValidationMessageFor(model => model.ContactPhone)
+        </div>
+
+        <div class="editor-label">
+            公司电话
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyPhone)
+            @Html.ValidationMessageFor(model => model.CompanyPhone)
+        </div>
+
+        <div class="editor-label">
+            电子邮件
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            组织机构代码证
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrganizationCode)
+            @Html.ValidationMessageFor(model => model.OrganizationCode)
+        </div>
+
+        <div class="editor-label">
+            邮政编码
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostalCode)
+            @Html.ValidationMessageFor(model => model.PostalCode)
+        </div>
+
+        <div class="editor-label">
+           传真
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fax)
+            @Html.ValidationMessageFor(model => model.Fax)
+        </div>
+
+        <p>
+            <input type="submit" value="修改" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("返回", "SupplierInfo")
+</div>
+

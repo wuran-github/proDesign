@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Transfer";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div id="getInfo">
+    <h2>快速查询仓库药品信息</h2>
+    仓库编号：<select id="seldepotid"></select>
+    药品编号：<select id="seldrugid"></select>
+    <input name="but_query" type="button" value="查询" />
+    <label id="nowpage" hidden="hidden">0</label>
+    <table id="queryresult" class="table table-striped" hidden="hidden">
+        <thead>
+            <tr>
+                <td>仓库药品编号</td>
+                <td>批号</td>
+                <td>数量</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <input name="prePage" type="button" hidden="hidden" value="上一页" />
+    <input name="nextPage" type="button" hidden="hidden" value="下一页" />
+</div>
+<br/><br/><br/>
+<div id="Transfer">
+    <table id="Transfer_tb" class="table table-striped">
+        <tr>
+            <td>转出的仓库药品编号</td>
+            <td>
+                <input id="inp_transoutId" type="text" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>转移数量</td>
+            <td>
+                <input id="inp_transNum" type="number" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>转入的仓库药品编号</td>
+            <td>
+                <input id="inp_transinId" type="text" />
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<div id="Transfer_buttons">
+    <input id="confirmTransfer" type="button" class="btn btn-default" value="确定调拨">
+</div>
+<script>
+    //前端验证
+    $("#confirmTransfer").click(function () {
+        /***********非空验证***********/
+        //提示信息
+        var alertText = "";
+        //转出的仓库药品编号
+        var outId = $("#inp_transoutId").val();
+        //转入的仓库药品编号
+        var inId = $("#inp_transinId").val();
+        //转移数量
+        var num = $("#inp_transNum").val();
+        if (outId == "" || inId == "" || num == "") {
+            alertText = "不能有空的项";
+            alert(alertText);
+        }
+    })
+    window.onload = function () {
+        var depotids = @Html.Raw(Json.Encode(@ViewBag.DepotId));
+        var drugids = @Html.Raw(Json.Encode(@ViewBag.DrugId));
+        var depotidops = "<option></option>";
+        var drugidops = "<option></option>";
+        for (var i = 0; i < depotids.length; i++) {
+            depotidops += ("<option>" + depotids[i] + "</option>");
+        }
+        for (var i = 0; i < drugids.length; i++) {
+            drugidops += ("<option>" + drugids[i] + "</option>");
+        }
+        $("#seldepotid").append(depotidops);
+        $("#seldrugid").append(drugidops);
+    }
+</script>
+<script src="~/Scripts/Controllers/TransferController.js"></script>

@@ -1,0 +1,74 @@
+﻿@model models.tb_SupplierInfo
+
+@{
+    ViewBag.Title = "details";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<fieldset>
+    
+
+    <div class="display-label">
+         供销商名称：
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         法人：
+        @Html.DisplayFor(model => model.LegalPersons)
+    </div>
+
+    <div class="display-label">
+         地址：
+   
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         联系人姓名：
+   
+        @Html.DisplayFor(model => model.ContactName)
+    </div>
+
+    <div class="display-label">
+         联系人电话：
+ 
+        @Html.DisplayFor(model => model.ContactPhone)
+    </div>
+
+    <div class="display-label">
+         公司电话：
+    
+        @Html.DisplayFor(model => model.CompanyPhone)
+    </div>
+
+    <div class="display-label">
+         电子邮件：
+    
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         组织机构代码证：
+   
+        @Html.DisplayFor(model => model.OrganizationCode)
+    </div>
+
+    <div class="display-label">
+        邮政编码：
+   
+        @Html.DisplayFor(model => model.PostalCode)
+    </div>
+
+    <div class="display-label">
+        传真：
+   
+        @Html.DisplayFor(model => model.Fax)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("修改", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("返回", "SupplierInfo")
+</p>

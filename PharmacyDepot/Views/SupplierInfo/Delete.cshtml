@@ -1,0 +1,90 @@
+﻿@model models.tb_SupplierInfo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>tb_SupplierInfo</legend>
+
+    <div class="display-label">
+         供销商名称
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         法人
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegalPersons)
+    </div>
+
+    <div class="display-label">
+         地址
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         联系人姓名
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactName)
+    </div>
+
+    <div class="display-label">
+         联系人电话
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactPhone)
+    </div>
+
+    <div class="display-label">
+         公司电话
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyPhone)
+    </div>
+
+    <div class="display-label">
+         电子邮件
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+        组织机构代码证
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrganizationCode)
+    </div>
+
+    <div class="display-label">
+         邮政编码
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostalCode)
+    </div>
+
+    <div class="display-label">
+        传真
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fax)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="删除" /> |
+        @Html.ActionLink("返回", "SupplierInfo")
+    </p>
+}

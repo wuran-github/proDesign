@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "生成采购计划";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<h2>生成采购计划</h2>
+<div class="row clearfix">
+    <div class="form-group">
+        <label class="col-sm-1 control-label">药品</label>
+        <div class="col-sm-3">
+            <select class="form-control" id="drugselect"></select>
+        </div>
+        <label class="col-sm-1 control-label">仓库</label>
+        <div class="col-sm-2">
+            <select class="form-control" id="depotselect"></select>
+
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-default" id="search">搜索</button>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-default" id="purchase">生成采购计划</button>
+        </div>
+    </div>
+    <div class="col-md-12 column">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        仓库名称
+                    </th>
+                    <th>
+                        药品名称
+                    </th>
+                    <th>现存数量</th>
+                    <th width="15%">采购数量</th>
+                    <th width="15%">选择供应商</th>
+                    <th><input type="checkbox" id="allcheckbox" /></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="col-md-12">
+
+                <label class="control-label col-lg-2">当前第<span id="page"></span>页</label>
+                <label class="control-label col-lg-2">共<span id="total"></span>页</label>
+                <ul class="pager col-lg-4" style="display:inline-block;margin:0;">
+                    <li id="lip"><a href="Javascript:void(0)" id="previous">上一页</a></li>
+                    <li id="lin"><a href="Javascript:void(0)" id="next">下一页</a></li>
+                </ul>
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" id="pageIndex" placeholder="1">
+                </div>
+                <button class="btn btn-default col-md-1" id="jump">转到</button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="../../Scripts/Controllers/BuildPurchasePlanController.js"></script>
+

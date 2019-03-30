@@ -1,0 +1,43 @@
+﻿@model models.tb_DamagedDrug
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h1 >药品报损信息删除</h1><br/><br />
+<h3>确认删除该药品报损信息？</h3><br />
+<fieldset style="font-size:18px">
+
+    <div class="display-label">
+        药品编号：
+        @Html.DisplayFor(model => model.DrugId)
+    </div>
+    <div class="display-label">
+        药品存放信息编号：
+        @Html.DisplayFor(model => model.DepotDrugId)
+    </div>
+    <div class="display-label">
+        损坏日期：
+        @Html.DisplayFor(model => model.DamagedDate)
+    </div>
+
+    <div class="display-label">
+        损坏数量：
+        @Html.DisplayFor(model => model.Num)
+    </div>
+
+    <div class="display-label">
+        损坏原因：
+        @Html.DisplayFor(model => model.Reason)
+    </div>
+</fieldset><br />
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="删除" class="btn btn-default" />
+    </p>
+    <div>
+        @Html.ActionLink("返回清单", "Damaged")
+    </div>
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8184e67750c49a29fe2d4c03f577360" Name="Diagram1" >
+        <EntityTypeShape EntityType="DBDepotModel.tb_DamagedDrug" Width="1.5" PointX="6" PointY="6.75" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_DepotDrug" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_DepotIn" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_DepotInfo" Width="1.5" PointX="0.75" PointY="14.625" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_DepotOut" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_DrugInfo" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_SupplierInfo" Width="1.5" PointX="0.75" PointY="10.375" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_Warning" Width="1.5" PointX="5.25" PointY="11.25" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DamagedDrug_tb_DepotDrug" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DamagedDrug_tb_DrugInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotDrug_tb_DepotInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotDrug_tb_DrugInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_Warning_tb_DepotDrug" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotIn_tb_DepotInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotIn_tb_DrugInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotIn_tb_SupplierInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotOut_tb_DepotInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotOut_tb_DrugInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotOut_tb_SupplierInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_DepotDrug_tb_DepotIn" />
+        <AssociationConnector Association="DBDepotModel.tb_AssociationDrugOut" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_Purchase" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBDepotModel.tb_PurchaseDrugs" Width="1.5" PointX="6" PointY="4.625" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_DrugInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_Purchase" />
+        <EntityTypeShape EntityType="DBDepotModel.StockView" Width="1.5" PointX="6.375" PointY="0.75" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_DepotInfo" />
+        <AssociationConnector Association="DBDepotModel.FK_tb_PurchaseDrugs_tb_SupplierInfo" />
+        <EntityTypeShape EntityType="DBDepotModel.drugCheck" Width="1.5" PointX="8.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

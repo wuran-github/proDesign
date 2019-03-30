@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="models.DBDepotEntities" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAgAAAAAAAAhAAAAAAAASEAAQAAAEAAAAAACAAAA=</HashCode>
+      <FileName>Depot.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_DamagedDrug" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAAAAAAAAAAoAEAAEAEACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tb_DamagedDrug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_DepotDrug" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAACAgAAAAAAgAhAEIAAAAAAAAAQAAQEAAAAAACAAAA=</HashCode>
+      <FileName>tb_DepotDrug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_DepotIn" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAgCAAAAAAAAgAgAEAAAAAADAAAQAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>tb_DepotIn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_DepotInfo" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAAAAABAAAAAAAQCAAAAAAACAQAAAQAAAAA=</HashCode>
+      <FileName>tb_DepotInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_DepotOut" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAgCAAEAAAAAAAgAEAAAAAACAAAQAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>tb_DepotOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_DrugInfo" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIACAgAAAAAAAABAAAAAEAQCAAAAAAAAAIAAAACAAEA=</HashCode>
+      <FileName>tb_DrugInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_Purchase" Collapsed="true">
+    <Position X="8.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAABAAAAAAg=</HashCode>
+      <FileName>tb_Purchase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_PurchaseDrugs" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KAAAAAAAAAAAAAgAEAAAAAAQAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>tb_PurchaseDrugs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_SupplierInfo" Collapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAGAgAAgCAAAABAIAIgAAQAAAAAAAACAAAAAAAAQAA=</HashCode>
+      <FileName>tb_SupplierInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.tb_Warning" Collapsed="true">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAACABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>tb_Warning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
